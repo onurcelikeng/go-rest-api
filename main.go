@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
 	"github.com/gorilla/mux"
+	"github.com/satori/go.uuid"
 )
 
 func homeLink(w http.ResponseWriter, r *http.Request) {
