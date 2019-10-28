@@ -2,19 +2,34 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"net/http"
-
 	"github.com/gorilla/mux"
-	"github.com/satori/go.uuid"
+	"go-contacts/app"
+	"go-contacts/controllers"
+	"net/http"
+	"os"
 )
 
-func homeLink(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome GO page!")
-}
-
 func main() {
-	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/", homeLink)
-	log.Fatal(http.ListenAndServe(":8080", router))
+	router := mux.NewRouter()
+
+	router.HandleFunc("/api/user/new", controllers.CreateAccount).Methods("POST")
+	router.HandleFunc("/api/user/login", controllers.Authenticate).Methods("POST")
+	// router.HandleFunc("/api/contacts/new", controllers.CreateContact).Methods("POST")
+	// router.HandleFunc("/api/me/contacts", controllers.GetContactsFor).Methods("GET") //  user/2/contacts
+
+	router.Use(app.JwtAuthentication) //attach JWT auth middleware
+
+	//router.NotFoundHandler = app.NotFoundHandler
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000" //localhost
+	}
+
+	fmt.Println(port)
+
+	err := http.ListenAndServe(":"+port, router) //Launch the app, visit localhost:8000/api
+	if err != nil {
+		fmt.Print(err)
+	}
 }
