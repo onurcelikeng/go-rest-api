@@ -1,0 +1,5 @@
+module go-contacts
+
+require (
+    
+)
