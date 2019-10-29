@@ -10,15 +10,11 @@ import (
 	"strings"
 )
 
-/*
-JWT claims struct
-*/
 type Token struct {
 	UserId uint
 	jwt.StandardClaims
 }
 
-//a struct to rep user account
 type Account struct {
 	gorm.Model
 	Email string `json:"email"`
@@ -28,7 +24,6 @@ type Account struct {
 
 //Validate incoming user details...
 func (account *Account) Validate() (map[string] interface{}, bool) {
-
 	if !strings.Contains(account.Email, "@") {
 		return u.Message(false, "Email address is required"), false
 	}
@@ -53,7 +48,6 @@ func (account *Account) Validate() (map[string] interface{}, bool) {
 }
 
 func (account *Account) Create() (map[string] interface{}) {
-
 	if resp, ok := account.Validate(); !ok {
 		return resp
 	}
@@ -81,7 +75,6 @@ func (account *Account) Create() (map[string] interface{}) {
 }
 
 func Login(email, password string) (map[string]interface{}) {
-
 	account := &Account{}
 	err := GetDB().Table("accounts").Where("email = ?", email).First(account).Error
 	if err != nil {
