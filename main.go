@@ -16,7 +16,7 @@ func main() {
 	router.HandleFunc("/api/register", controllers.SignUp).Methods("POST")
 	router.HandleFunc("/api/login", controllers.SignIn).Methods("POST")
 
-	router.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+	router.PathPrefix("/swagger").Handler(httpSwagger.WrapHandler)
 
 	router.Use(app.JwtAuthentication)
 

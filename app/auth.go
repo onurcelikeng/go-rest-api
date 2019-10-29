@@ -12,7 +12,7 @@ import (
 
 var JwtAuthentication = func(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		notAuth := []string{"/api/register", "/api/login"} //List of endpoints that doesn't require auth
+		notAuth := []string{"/api/register", "/api/login", "/swagger"} //List of endpoints that doesn't require auth
 		requestPath := r.URL.Path //current request path
 
 		for _, value := range notAuth {
