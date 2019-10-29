@@ -14,8 +14,6 @@ func main() {
 
 	router.HandleFunc("/api/user/new", controllers.SignUp).Methods("POST")
 	router.HandleFunc("/api/user/login", controllers.SignIn).Methods("POST")
-	router.HandleFunc("/api/contacts/new", controllers.CreateContact).Methods("POST")
-	router.HandleFunc("/api/me/contacts", controllers.GetContactsFor).Methods("GET") //  user/{id}/contacts
 
 	router.Use(app.JwtAuthentication)
 

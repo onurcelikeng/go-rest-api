@@ -11,9 +11,14 @@ require (
 	github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a // indirect
 	github.com/jinzhu/now v1.0.1 // indirect
 	github.com/joho/godotenv v1.3.0
+	github.com/kr/fs v0.1.0 // indirect
+	github.com/kr/pretty v0.1.0 // indirect
 	github.com/lib/pq v1.0.0 // indirect
 	github.com/mattn/go-sqlite3 v1.11.0 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
+	github.com/tools/godep v0.0.0-20180126220526-ce0bfadeb516 // indirect
 	golang.org/x/crypto v0.0.0-20190605123033-f99c8df09eb5
+	golang.org/x/tools v0.0.0-20191029041327-9cc4af7d6b2c // indirect
 	google.golang.org/appengine v1.6.4 // indirect
 )
 
