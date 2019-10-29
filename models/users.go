@@ -28,7 +28,7 @@ func (user *User) Validate() (map[string] interface{}, bool) {
 	}
 
 	if len(user.Password) < 8 {
-		return u.Message(false, "Password is required"), false
+		return u.Message(false, "Password is invalid"), false
 	}
 
 	tempUser := &User{}

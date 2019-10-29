@@ -15,18 +15,16 @@ func main() {
 	router.HandleFunc("/api/user/new", controllers.SignUp).Methods("POST")
 	router.HandleFunc("/api/user/login", controllers.SignIn).Methods("POST")
 	router.HandleFunc("/api/contacts/new", controllers.CreateContact).Methods("POST")
-	router.HandleFunc("/api/me/contacts", controllers.GetContactsFor).Methods("GET") //  user/2/contacts
+	router.HandleFunc("/api/me/contacts", controllers.GetContactsFor).Methods("GET") //  user/{id}/contacts
 
-	router.Use(app.JwtAuthentication) //attach JWT auth middleware
+	router.Use(app.JwtAuthentication)
 
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8000"
 	}
 
-	fmt.Println(port)
-
-	err := http.ListenAndServe(":"+port, router) //Launch the app, visit localhost:8000/api
+	err := http.ListenAndServe(":" + port, router) //localhost:8000/api
 	if err != nil {
 		fmt.Print(err)
 	}
