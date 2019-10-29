@@ -7,6 +7,7 @@ import (
 	"go-contacts/controllers"
 	"net/http"
 	"os"
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
 func main() {
@@ -14,6 +15,8 @@ func main() {
 
 	router.HandleFunc("/api/register", controllers.SignUp).Methods("POST")
 	router.HandleFunc("/api/login", controllers.SignIn).Methods("POST")
+
+	router.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
 
 	router.Use(app.JwtAuthentication)
 
